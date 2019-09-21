@@ -2,9 +2,11 @@
 <html>
 <head>
 	<title>ERP Project NITUK</title>
-</head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
 <body>
-	<h1>ERP Project</h1>
+	<di
+    
 
 </body>
 </html>

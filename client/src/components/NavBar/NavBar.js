@@ -32,6 +32,27 @@ export default class NavBar  extends Component{
               onClick = {this.handleClick}>
                  Events
               </Menu.Item>
+
+              <Menu.Item
+              name= "Student login"
+              active = {this.state.activeItem==="Student login"}
+              onClick = {this.handleClick}>
+                 Student login
+                 </Menu.Item>
+
+              <Menu.Item
+              name= "Company login"
+              active = {this.state.activeItem==="Company login"}
+              onClick = {this.handleClick}>
+                 Company login
+              </Menu.Item>
+
+              <Menu.Item
+              name= "Admin login"
+              active = {this.state.activeItem==="Admin login"}
+              onClick = {this.handleClick}>
+                 Admin login
+              </Menu.Item>
            </Menu>
            
           

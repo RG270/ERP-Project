@@ -7,8 +7,7 @@ app.get('/', (req, res)=>{
 	res.json(names);
 });
 
+
 app.listen(3001 , (req, res) => {
     console.log('server is listening');
 });
-
-module.exports = app;

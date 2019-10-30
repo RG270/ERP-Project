@@ -1,9 +1,11 @@
 var express = require('express');
-var app = express();
-var cors = require('cors');
-app.use(cors());
+var router = express.Router({mergeParams: true});
 
 
-app.get('/', (req, res)=>{
-    
-})
+
+
+router.get('/', (req, res)=>{
+    res.send("hello there");
+});
+
+module.exports  = router;

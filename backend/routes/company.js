@@ -43,4 +43,18 @@ router.delete('/:id/delete',(req, res)=>{
    });
 } );
 
+router.put('/:id/put', (req, res)=>{
+    const id = ObjectId(req.params.id.toString());
+    Company.updateOne({_id: id }, req.body,  (err, result)=>{
+        if (err)res.json(err);
+        else {
+            Company.find({}, (err, companies)=>{
+                if (err)res.json(err);
+                else res.json(companies);
+            });
+        }
+    });
+});
+
+
 module.exports = router;

@@ -1,7 +1,6 @@
 .company-details {
-    width: 50vw;
+    width: fit-content;
     margin: auto;
-    margin-top: 100px;
     margin-bottom: 100px;
 }
 
@@ -9,4 +8,24 @@
     width: 50vw;
     margin: auto;
     margin-bottom: 100px;
+}
+table {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+td {
+    border-top-width: 0px;
+    height: 2px;
+}
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+.left-aside {
+    padding-top: 100px;
+    border-right: 0.5px solid grey;
+    
+    
 }

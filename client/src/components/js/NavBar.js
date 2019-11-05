@@ -11,7 +11,7 @@ export default class NavBar extends Component {
       return(
           <nav className = "navbar navbar-dark bg-dark navbar-expand-lg">
               <Link to='/' className = "navbar-brand">ERP Platform</Link>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>

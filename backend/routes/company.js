@@ -1,9 +1,15 @@
+
+// IMPORTING REQUIRED PACKAGES
+
 var express = require('express');
 var router = express.Router({mergeParams: true});
 var ObjectId = require('mongoose').Types.ObjectId;
 var Company = require('../models/company.model');
 var cors = require('cors');
 router.use(cors());
+
+
+// GET THE LIST OF COMPANIES
 
 router.get('/', (req, res)=>{
     Company.find({}, (err, company)=>{
@@ -15,6 +21,9 @@ router.get('/', (req, res)=>{
         }
     });
 });
+
+
+// ADD A COMPANY
 
 router.post('/add', (req, res)=>{
   console.log("here");
@@ -30,6 +39,9 @@ router.post('/add', (req, res)=>{
  
 });
 
+
+// DELETE A COMPANY
+
 router.delete('/:id/delete',(req, res)=>{
     const id = ObjectId(req.params.id.toString());
    Company.deleteOne({_id: id}, (err, deleted)=>{
@@ -42,6 +54,9 @@ router.delete('/:id/delete',(req, res)=>{
        }
    });
 } );
+
+
+// UPDATE COMPANY DETAILS
 
 router.put('/:id/put', (req, res)=>{
     const id = ObjectId(req.params.id.toString());

@@ -12,11 +12,13 @@ mongoose.connect('mongodb://localhost/erp', {useNewUrlParser: true});
 mongoose.set('debug', true);
 var indexRoutes = require('./routes/index');
 var companyRoutes = require('./routes/company');
+var studentRoutes = require('./routes/student');
 
 
 
 app.use('/', indexRoutes);
 app.use('/company/', companyRoutes);
+app.use('/student/', studentRoutes);
 
 
 app.listen(3001 , (req, res) => {

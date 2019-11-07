@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import qs from 'qs';
-import '../css/company.css'
 
-class CompanyItem extends Component {
+
+class StudentItem extends Component {
     constructor(props){
         super(props);
         this.formRef = React.createRef();
@@ -13,7 +13,7 @@ class CompanyItem extends Component {
     }
     
     componentDidMount(){
-        this.setState({form: this.props.company});
+        this.setState({form: this.props.student});
     }
     
     toggleDisplay(ref){
@@ -26,14 +26,14 @@ class CompanyItem extends Component {
         form.name = e.target.value;
           this.setState({
               form : form
-          })
+          });
     }
-    onChangeType=(e)=>{
+    onChangeRollNo=(e)=>{
         const form = this.state.form;
-        form.type = e.target.value;
+        form.rollNo = e.target.value;
         this.setState({
             form : form
-        })
+        });
     }
 
 
@@ -47,28 +47,28 @@ class CompanyItem extends Component {
             <tbody>
         <tr>
         <td>{this.props.index + 1}</td>
-        <td>{this.props.company.name}</td>
-        <td>{this.props.company.type}</td>
+        <td>{this.props.student.name}</td>
+        <td>{this.props.student.rollNo}</td>
         </tr>
         </tbody>
         </table>
-        <button  className = "btn btn-primary" onClick = {()=>this.props.deleteCompany(this.props.company._id)} style={{margin: "0.7rem"}}>Delete</button>
+        <button  className = "btn btn-primary" onClick = {()=>this.props.deleteStudent(this.props.student._id)} style={{margin: "0.7rem"}}>Delete</button>
         <button  className = "btn btn-primary"onClick = {()=>this.toggleDisplay(this.formRef)}>Edit</button>
         
     
     
-  <form style={{marginTop: "100px"}} ref = {this.formRef} style={{margin: "auto",width: "100%",display: "none"}} onSubmit = {this.props.onCompanyUpdate(this.props.company._id, this.state.form)}>
+  <form style={{marginTop: "100px"}} ref = {this.formRef} style={{margin: "auto",width: "100%",display: "none"}} onSubmit = {this.props.onStudentUpdate(this.props.student._id, this.state.form)}>
     
     <div class="form-group">
-  <label >Company Name</label>
-  <input type="text" class="form-control"  placeholder="Company Name" value={this.state.form.name} onChange = {this.onChangeName}/>
+  <label >Student Name</label>
+  <input type="text" class="form-control"  placeholder="Student Name" value={this.state.form.name} onChange = {this.onChangeName}/>
 </div>
 
 <div class="form-group" >
   <label>Type</label>
-  <input type="text" class="form-control"  placeholder="Type" value={this.state.form.type} onChange = {this.onChangeType}/>
+  <input type="text" class="form-control"  placeholder="Roll Number" value={this.state.form.rollNo} onChange = {this.onChangeRollNo}/>
 </div>
-<button type="submit" class="btn btn-primary" onClick={()=>this.toggleDisplay(this.formRef)}>Edit</button>
+<button type="submit" class="btn btn-primary" onClick = {()=>this.toggleDisplay(this.formRef)}>Edit</button>
 </form>
 
 
@@ -85,23 +85,23 @@ class CompanyItem extends Component {
 
 
 
-export default class Company extends Component {
+export default class Student extends Component {
     constructor(){
         super();
         this.formRef = React.createRef();
         this.state = {
-            companies : [{}],
+            students : [{}],
             form: {}
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
-        this.onChangeType = this.onChangeType.bind(this);
-        this.onCompanyUpdate = this.onCompanyUpdate.bind(this);
-        this.deleteCompany = this.deleteCompany.bind(this);
+        this.onChangeRollNo = this.onChangeRollNo.bind(this);
+        this.onStudentUpdate = this.onStudentUpdate.bind(this);
+        this.deleteStudent = this.deleteStudent.bind(this);
     }
     componentDidMount(){
-        axios.get("http://localhost:3001/company")
-        .then(res=>this.setState({companies : res.data}))
+        axios.get("http://localhost:3001/student")
+        .then(res=>this.setState({students : res.data}))
         .catch(err=>console.log(err));
     }
     
@@ -112,9 +112,9 @@ export default class Company extends Component {
               form : form
           })
     }
-    onChangeType(e){
+    onChangeRollNo(e){
         const form = this.state.form;
-        form.type = e.target.value;
+        form.rollNo = e.target.value;
         this.setState({
             form : form
         })
@@ -122,28 +122,29 @@ export default class Company extends Component {
     onSubmit(e){
         e.preventDefault();
         let form = this.state.form;
-        axios.post("http://localhost:3001/company/add", qs.stringify(form))
-        .then(res=>this.setState({companies : res.data}))
-        .catch(err=>console.log("here"));
+        axios.post("http://localhost:3001/student/add", qs.stringify(form))
+        .then(res=>this.setState({students : res.data}))
+        .catch(err=>alert("Sorry we are unable to add Student please try again later"));
 
-        form = {name:"", type: ""};
+        form = {name:"", rollNo: ""};
         this.setState({form: form});
     }
-    deleteCompany(id){
-        axios.delete("http://localhost:3001/company/" + id + "/delete")
-        .then(res=>{this.setState({companies : res.data});})
+    deleteStudent(id){
+        axios.delete("http://localhost:3001/student/" + id + "/delete")
+        .then(res=>{this.setState({students : res.data});})
         .catch(err=> alert("Sorry delete operation was unsuccessful. Please try again later."));
     }
     toggleDisplay(ref){
         if (ref.current.style.display =="none") ref.current.style.display = "block";
         else ref.current.style.display = "none";
     }
-    onCompanyUpdate(id, form){
+    onStudentUpdate(id, form){
          var f =  (e)=>{      
         e.preventDefault();
-        axios.put("http://localhost:3001/company/" + id + "/put", qs.stringify(form))
-        .then(res=>this.setState({companies: res.data}))
-        .catch(err=>alert("sorry we could not update the company details please try again later"));
+        axios.put("http://localhost:3001/student/" + id + "/put", qs.stringify(form))
+        .then(res=>this.setState({students: res.data}))
+        .catch(err=>alert("sorry we could not update the student details please try again later"));
+        
         
     }
     return f;
@@ -164,38 +165,38 @@ export default class Company extends Component {
                     </ul>
                 </div>
                 <div className= "col-sm-10">
-                <div className="company-details" >
+                <div className="student-details" >
                   <table className = "table"  >
                       <thead >
                           <th >#</th>
                           <th >Name</th>
-                          <th >Type</th>
+                          <th >Roll Number</th>
                       </thead>
                       </table>
-                        {this.state.companies.map((company,index)=>(
-                            <CompanyItem deleteCompany = {this.deleteCompany} index = {index}  company = {company} onCompanyUpdate = {this.onCompanyUpdate}/>
+                        {this.state.students.map((student,index)=>(
+                            <StudentItem deleteStudent = {this.deleteStudent} index = {index}  student = {student} onStudentUpdate = {this.onStudentUpdate}/>
                         ))            
                         }
                               
             </div>
 
-           <button className = "btn btn-primary" onClick = {()=>this.toggleDisplay(this.formRef)}>Add companies</button>
+           <button className = "btn btn-primary" onClick = {()=>this.toggleDisplay(this.formRef)}>Add students</button>
            
            
           
            
-            <div ref = {this.formRef} className = "company-form" style={{display: "none"}} >
+            <div ref = {this.formRef} className = "student-form" style={{display: "none"}} >
                            
                         <form onSubmit = {this.onSubmit}>
                 <div class="form-group">
-                    <label >Company Name</label>
-                    <input type="text" class="form-control"  placeholder="Company Name" value={this.state.form.name} onChange = {this.onChangeName}/>
+                    <label >Student Name</label>
+                    <input type="text" class="form-control"  placeholder="Student Name" value={this.state.form.name} onChange = {this.onChangeName}/>
                 </div>
                 <div class="form-group">
-                    <label>Type</label>
-                    <input type="text" class="form-control"  placeholder="Type" value={this.state.form.type} onChange = {this.onChangeType}/>
+                    <label>Roll Number</label>
+                    <input type="text" class="form-control"  placeholder="Roll Number" value={this.state.form.rollNo} onChange = {this.onChangeRollNo}/>
                 </div>
-                <button type="submit" class="btn btn-primary" onClick={()=>this.toggleDisplay(this.formRef)}>Submit</button>
+                <button type="submit" class="btn btn-primary" onClick = {()=>this.toggleDisplay(this.formRef)}>Submit</button>
                 </form>
             </div>
 

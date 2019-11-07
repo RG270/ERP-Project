@@ -1,24 +1,24 @@
 var mongoose = require('mongoose');
 
 var studentSchema = new mongoose.Schema({
-    id: {type: String, required: true },
+    id: String,
     name: String,
     branch: String,
-    rollno: String,
+    rollNo: String,
     email: String,
     phone: String,
     skillSet: [],
     linkedin: String,
     gender: String,
     cgpa: Number,
-    backlog: boolean,
-    placed: boolean,
+    backlog: Boolean,
+    placed: Boolean,
     companyPlaced: {
         name: String,
         package: Number,
-        onCampus: boolean
+        onCampus: Boolean
     },
-    blacklist: boolean
+    blacklist: Boolean
 });
 
 module.exports = mongoose.model('Student', studentSchema);

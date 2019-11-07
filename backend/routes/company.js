@@ -26,7 +26,7 @@ router.get('/', (req, res)=>{
 // ADD A COMPANY
 
 router.post('/add', (req, res)=>{
-  console.log("here");
+ 
    Company.create(req.body, (err, created)=>{
       if (err) console.log(err);
       else  {
@@ -64,7 +64,7 @@ router.put('/:id/put', (req, res)=>{
         if (err)res.json(err);
         else {
             Company.find({}, (err, companies)=>{
-                if (err)res.json(err);
+                if (err)console.log(err);
                 else res.json(companies);
             });
         }

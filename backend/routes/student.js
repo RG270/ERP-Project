@@ -10,9 +10,60 @@ router.use(cors());
 
 // GET LIST OF ALL THE STUDENTS
 
-app.get('/', (req, res)=>{
-    MediaStreamAudioDestinationNode.
+router.get('/', (req, res)=>{
+    Student.find({}, (err, result)=>{
+        if (err) console.log(err);
+        else res.json(result);
+    });
+});
+
+
+// ADD A STUDENT
+
+router.post('/add', (req, res)=>{
+    
+    Student.create(req.body, (err, created)=>{
+        if (err) console.log(err);
+        else  {
+          Student.find({}, (err, result)=>{
+              if (err)console.log(err);
+              else res.json(result);
+          });
+      }
+    });
 })
+
+
+// DELETE A STUDENT
+
+router.delete('/:id/delete',(req, res)=>{
+    const id = ObjectId(req.params.id.toString());
+   Student.deleteOne({_id: id}, (err, deleted)=>{
+       if (err) console.log(err);
+       else {
+           Student.find({}, (err, result)=>{
+               if (err) console.log(err);
+               else res.json(result);
+           });
+       }
+   });
+} );
+
+
+// UPDATE STUDENT DETAILS
+
+router.put('/:id/put', (req, res)=>{
+    const id = ObjectId(req.params.id.toString());
+    Student.updateOne({_id: id }, req.body,  (err, result)=>{
+        if (err)console.log(err);
+        else {
+            Student.find({}, (err, result)=>{
+                if (err)console.log(err);
+                else res.json(result);
+            });
+        }
+    });
+});
 
 
 module.exports = router;

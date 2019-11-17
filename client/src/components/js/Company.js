@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import qs from 'qs';
 import '../css/company.css'
+import Filter from './Filter';
 
 class CompanyItem extends Component {
     constructor(props){
@@ -98,11 +99,12 @@ export default class Company extends Component {
         this.onChangeType = this.onChangeType.bind(this);
         this.onCompanyUpdate = this.onCompanyUpdate.bind(this);
         this.deleteCompany = this.deleteCompany.bind(this);
+        
     }
     componentDidMount(){
         axios.get("http://localhost:3001/company")
         .then(res=>this.setState({companies : res.data}))
-        .catch(err=>console.log(err));
+        .catch(err=>alert("sorry we could not fetch the company details please try again later"));
     }
     
     onChangeName(e) {
@@ -124,7 +126,7 @@ export default class Company extends Component {
         let form = this.state.form;
         axios.post("http://localhost:3001/company/add", qs.stringify(form))
         .then(res=>this.setState({companies : res.data}))
-        .catch(err=>console.log("here"));
+        .catch(err=>alert("Sorry we could not add the company right now please try again later"));
 
         form = {name:"", type: ""};
         this.setState({form: form});
@@ -145,10 +147,15 @@ export default class Company extends Component {
         .then(res=>this.setState({companies: res.data}))
         .catch(err=>alert("sorry we could not update the company details please try again later"));
         
-    }
-    return f;
+         }
+         return f;
+       }
+
     
-}
+      onApplyFilter = (companies)=> {
+       this.setState({companies: companies});
+    }
+
     render(){
         return(
             
@@ -156,12 +163,8 @@ export default class Company extends Component {
             
             <div >
                 <div className="row" >
-                   <div className = "col-sm-2 text-center left-aside" >
-                    <ul type = "none"> 
-                        <li> one</li>
-                        <li> two</li>
-                        <li> three</li> 
-                    </ul>
+                <div className = "col-sm-2 text-center left-aside" >
+                    <Filter onApplyFilter = {this.onApplyFilter}/>
                 </div>
                 <div className= "col-sm-10">
                 <div className="company-details" >

@@ -40,6 +40,17 @@ router.post('/add', (req, res)=>{
 });
 
 
+// ADD FILTERS TO THE COMPANIES LIST
+
+router.post('/filters' ,(req,res) => {
+    var filter = {type: req.body.type};
+     Company.find(filter, (err, result)=>{
+        if (err) console.log(err);
+        else res.json(result);
+    });
+});
+
+
 // DELETE A COMPANY
 
 router.delete('/:id/delete',(req, res)=>{

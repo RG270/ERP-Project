@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import qs from 'qs';
-
+import '../css/student.css';
 
 class StudentItem extends Component {
     constructor(props){
@@ -202,12 +202,6 @@ export default class Student extends Component {
 
                 </div>
                  </div>
-                
-                
-
-
-
-
             </div>
            
            

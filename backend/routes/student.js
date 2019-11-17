@@ -18,6 +18,16 @@ router.get('/', (req, res)=>{
 });
 
 
+// GET INFO ABOUT A PARTICULAR STUDENT
+
+router.get('/:id', (req, res)=>{
+    Student.find({_id : req.params.id}, (err, found)=>{
+        if (err) console.log(err);
+        else res.json(found);
+    })
+})
+
+
 // ADD A STUDENT
 
 router.post('/add', (req, res)=>{

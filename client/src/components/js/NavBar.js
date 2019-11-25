@@ -17,7 +17,7 @@ export default class NavBar extends Component {
                     <span class="icon-bar"></span>
                 </button>
               <div className = "collapse navbar-collapse" id = "myNavbar">
-                  <ul className = "navbar-nav nav">
+                  <ul className = "navbar-nav mr-auto">
                       <li className = "navbar-item">
                           <Link to='/company' className = "nav-link">Companies</Link>
                       </li>
@@ -27,6 +27,13 @@ export default class NavBar extends Component {
                       <li className = "navbar-item">
                           <Link to='/admin' className = "nav-link">Admininstrators</Link>
                       </li>
+                      <li className = "navbar-item">
+                          <Link to = '/signup' className = "nav-link">Sign Up</Link>
+                      </li>
+                      <li className = "navbar-item">
+                          <Link to = '/login' className = "nav-link">Log in</Link>
+                      </li>
+                      
                   </ul>
               </div>
           </nav>

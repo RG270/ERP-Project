@@ -44,6 +44,7 @@ router.post('/add', (req, res)=>{
 
 router.post('/filters' ,(req,res) => {
     var filter = {type: req.body.type};
+    if (filter.type ==='')filter = {};
      Company.find(filter, (err, result)=>{
         if (err) console.log(err);
         else res.json(result);

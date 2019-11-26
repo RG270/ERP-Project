@@ -51,25 +51,29 @@ export default class Filter extends Component {
 
     render(){
         return (
-            <form onSubmit = {this.onSubmit}>
-                 <label>  
-                   Type:
-                    <select onChange = {this.onChangeType} value = {this.state.filter.type}>
-                        <option value=""> Any </option>
-                        <option value="e-commerce"> E-Commerce</option>
-                        <option value="construction"> Construction</option>
-                        <option value="business"> Business</option>
-                        <option value="information technology"> Information Technology</option>
-                    </select>
-                </label>
-                <label>
-                    Package:
-                    <input type ="text" name="minPackage" placeholder = "from" onChange = {this.onChangeMinPackage} value={this.state.filter.minPackage}></input>
-                    <input type = "text" name = "maxPackage" placeholder = "to" onChange = {this.onChangeMaxPackage} value = {this.state.filter.maxPackage}></input>
-                </label>
-                <input type = "submit" value = "submit"></input>
-                
-            </form>
+            <div>
+                <h4 class="mb-3 text-muted">Filters</h4>
+                <form onSubmit = {this.onSubmit}>
+                    <div>
+                        <label>Type:</label>
+                        <select class="form-control custom-select" onChange = {this.onChangeType} value = {this.state.filter.type}>
+                            <option value=""> Any </option>
+                            <option value="e-commerce"> E-Commerce</option>
+                            <option value="construction"> Construction</option>
+                            <option value="business"> Business</option>
+                            <option value="information technology"> Information Technology</option>
+                        </select>
+                    </div>
+                    <div>
+                        <br></br>
+                        <label>Package:</label>
+                        <input type ="text" name="minPackage" class="form-control" placeholder = "from" onChange = {this.onChangeMinPackage} value={this.state.filter.minPackage}></input>
+                        <input type = "text" name = "maxPackage" class="form-control" placeholder = "to" onChange = {this.onChangeMaxPackage} value = {this.state.filter.maxPackage}></input>
+                    </div>
+
+                    <input class="btn btn-success" type = "submit" class="form-control" value = "submit"></input>    
+                </form>
+            </div>
         )
 
     }

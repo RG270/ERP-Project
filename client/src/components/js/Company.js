@@ -42,38 +42,34 @@ class CompanyItem extends Component {
 
        
     return( 
-        <div className="container" style={{float: "left"}}>
-          
-        <table className = "table">
-            <tbody>
-        <tr>
-        <td>{this.props.index + 1}</td>
-        <td>{this.props.company.name}</td>
-        <td>{this.props.company.type}</td>
-        </tr>
-        </tbody>
-        </table>
-        <button  className = "btn btn-primary" onClick = {()=>this.props.deleteCompany(this.props.company._id)} style={{margin: "0.7rem"}}>Delete</button>
-        <button  className = "btn btn-primary"onClick = {()=>this.toggleDisplay(this.formRef)}>Edit</button>
+        <div class="container">
+	
+            <table className = "table">
+                <tbody>
+                    <tr>
+                        <td>{this.props.index + 1}</td>
+                        <td>{this.props.company.name}</td>
+                        <td>{this.props.company.type}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <button  className = "btn btn-primary" onClick = {()=>this.props.deleteCompany(this.props.company._id)} style={{margin: "0.7rem"}}>Delete</button>
+            <button  className = "btn btn-primary"onClick = {()=>this.toggleDisplay(this.formRef)}>Edit</button>
         
-    
-    
-  <form style={{marginTop: "100px"}} ref = {this.formRef} style={{margin: "auto",width: "100%",display: "none"}} onSubmit = {this.props.onCompanyUpdate(this.props.company._id, this.state.form)}>
-    
-    <div class="form-group">
-  <label >Company Name</label>
-  <input type="text" class="form-control"  placeholder="Company Name" value={this.state.form.name} onChange = {this.onChangeName}/>
-</div>
+            <form style={{marginTop: "100px"}} ref = {this.formRef} style={{margin: "auto",width: "100%",display: "none"}} onSubmit = {this.props.onCompanyUpdate(this.props.company._id, this.state.form)}>
+                
+                <div class="form-group p-5">
+                    <label >Company Name</label>
+                    <input type="text" class="form-control"  placeholder="Company Name" value={this.state.form.name} onChange = {this.onChangeName}/>
+                    
+                    <label>Type</label>
+                    <input type="text" class="form-control"  placeholder="Type" value={this.state.form.type} onChange = {this.onChangeType}/>
+                </div>
+                <button type="submit" class="btn btn-primary" onClick={()=>this.toggleDisplay(this.formRef)}>Edit</button>
+            </form>
 
-<div class="form-group" >
-  <label>Type</label>
-  <input type="text" class="form-control"  placeholder="Type" value={this.state.form.type} onChange = {this.onChangeType}/>
-</div>
-<button type="submit" class="btn btn-primary" onClick={()=>this.toggleDisplay(this.formRef)}>Edit</button>
-</form>
-
-
-</div>
+        </div>
 
     
 
@@ -158,60 +154,50 @@ export default class Company extends Component {
 
     render(){
         return(
-            
-             
-            
-            <div >
+
+            <div class="container p-0 m-0">
                 <div className="row" >
-                <div className = "col-sm-2 text-center left-aside" >
-                    <Filter onApplyFilter = {this.onApplyFilter}/>
+                    <div className = "col-md-3 text-center card p-5 sidebar" >
+                        <Filter onApplyFilter = {this.onApplyFilter}/>
+                    </div>
+                    <div className= "col-md-9 m-0 p-0">
+                        <div className="company-details" >
+                            <table class="table table-striped">
+                                <thead >
+                                    <th >#</th>
+                                    <th >Name</th>
+                                    <th >Type</th>
+                                </thead>
+                            </table>
+                            {this.state.companies.map((company,index)=>(
+                                <CompanyItem deleteCompany = {this.deleteCompany} index = {index}  company = {company} onCompanyUpdate = {this.onCompanyUpdate}/>
+                                ))            
+                            }
+
+                        </div>
+
+                        <button className = "btn btn-primary" onClick = {()=>this.toggleDisplay(this.formRef)}>Add companies</button>
+
+                        <div ref = {this.formRef} className = "company-form" style={{display: "none"}} >
+
+                            <form onSubmit = {this.onSubmit}>
+                                <div class="form-group">
+                                    <label >Company Name</label>
+                                    <input type="text" class="form-control"  placeholder="Company Name" value={this.state.form.name} onChange = {this.onChangeName}/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Type</label>
+                                    <input type="text" class="form-control"  placeholder="Type" value={this.state.form.type} onChange = {this.onChangeType}/>
+                                </div>
+                                <button type="submit" class="btn btn-primary" onClick={()=>this.toggleDisplay(this.formRef)}>Submit</button>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
-                <div className= "col-sm-10">
-                <div className="company-details" >
-                  <table className = "table"  >
-                      <thead >
-                          <th >#</th>
-                          <th >Name</th>
-                          <th >Type</th>
-                      </thead>
-                      </table>
-                        {this.state.companies.map((company,index)=>(
-                            <CompanyItem deleteCompany = {this.deleteCompany} index = {index}  company = {company} onCompanyUpdate = {this.onCompanyUpdate}/>
-                        ))            
-                        }
-                              
-            </div>
-
-           <button className = "btn btn-primary" onClick = {()=>this.toggleDisplay(this.formRef)}>Add companies</button>
-           
-           
-          
-           
-            <div ref = {this.formRef} className = "company-form" style={{display: "none"}} >
-                           
-                        <form onSubmit = {this.onSubmit}>
-                <div class="form-group">
-                    <label >Company Name</label>
-                    <input type="text" class="form-control"  placeholder="Company Name" value={this.state.form.name} onChange = {this.onChangeName}/>
-                </div>
-                <div class="form-group">
-                    <label>Type</label>
-                    <input type="text" class="form-control"  placeholder="Type" value={this.state.form.type} onChange = {this.onChangeType}/>
-                </div>
-                <button type="submit" class="btn btn-primary" onClick={()=>this.toggleDisplay(this.formRef)}>Submit</button>
-                </form>
-            </div>
-
-                </div>
-                 </div>
-                
-                
-
-
-
 
             </div>
-           
+            
            
           
         )

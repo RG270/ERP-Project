@@ -152,60 +152,52 @@ export default class Student extends Component {
 }
     render(){
         return(
-            
-             
-            
-            <div >
-                <div className="row" >
-                   <div className = "col-sm-2 text-center left-aside" >
-                    <ul type = "none"> 
-                        <li> one</li>
-                        <li> two</li>
-                        <li> three</li> 
-                    </ul>
-                </div>
-                <div className= "col-sm-10">
-                <div className="student-details" >
-                  <table className = "table"  >
-                      <thead >
-                          <th >#</th>
-                          <th >Name</th>
-                          <th >Roll Number</th>
-                      </thead>
-                      </table>
-                        {this.state.students.map((student,index)=>(
-                            <StudentItem deleteStudent = {this.deleteStudent} index = {index}  student = {student} onStudentUpdate = {this.onStudentUpdate}/>
-                        ))            
-                        }
-                              
-            </div>
 
-           <button className = "btn btn-primary" onClick = {()=>this.toggleDisplay(this.formRef)}>Add students</button>
-           
-           
-          
-           
-            <div ref = {this.formRef} className = "student-form" style={{display: "none"}} >
-                           
-                        <form onSubmit = {this.onSubmit}>
-                <div class="form-group">
-                    <label >Student Name</label>
-                    <input type="text" class="form-control"  placeholder="Student Name" value={this.state.form.name} onChange = {this.onChangeName}/>
-                </div>
-                <div class="form-group">
-                    <label>Roll Number</label>
-                    <input type="text" class="form-control"  placeholder="Roll Number" value={this.state.form.rollNo} onChange = {this.onChangeRollNo}/>
-                </div>
-                <button type="submit" class="btn btn-primary" onClick = {()=>this.toggleDisplay(this.formRef)}>Submit</button>
-                </form>
-            </div>
+            <div class="container m-0 p-0">
+                <div className="row">
+                    <div className = "col-md-3 text-center card p-5">
+                        <h4 class="mb-3 text-muted">Filters</h4>
+                        <ul type="none"> 
+                            <li> one</li>
+                            <li> two</li>
+                            <li> three</li> 
+                        </ul>
+                    </div>
+                    <div className= "col-sm-9 m-0 p-0">
+                        <div className="student-details" >
+                            <table class="table table-striped">
+                                <thead >
+                                    <th >#</th>
+                                    <th >Name</th>
+                                    <th >Roll Number</th>
+                                </thead>
+                            </table>
+                            {this.state.students.map((student,index)=>(
+                                <StudentItem deleteStudent = {this.deleteStudent} index = {index}  student = {student} onStudentUpdate = {this.onStudentUpdate}/>
+                                ))            
+                            }
+                        </div>
 
+                        <button className = "btn btn-primary" onClick = {()=>this.toggleDisplay(this.formRef)}>Add students</button>
+                        
+                        <div ref = {this.formRef} className = "student-form" style={{display: "none"}} >
+                            
+                            <form onSubmit = {this.onSubmit}>
+                                <div class="form-group">
+                                    <label >Student Name</label>
+                                    <input type="text" class="form-control"  placeholder="Student Name" value={this.state.form.name} onChange = {this.onChangeName}/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Roll Number</label>
+                                    <input type="text" class="form-control"  placeholder="Roll Number" value={this.state.form.rollNo} onChange = {this.onChangeRollNo}/>
+                                </div>
+                                <button type="submit" class="btn btn-primary" onClick = {()=>this.toggleDisplay(this.formRef)}>Submit</button>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
-                 </div>
-            </div>
-           
-           
-          
+            </div>    
         )
     }
 }

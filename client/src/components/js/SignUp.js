@@ -49,32 +49,33 @@ export default class SignUp extends Component {
    }
     render(){
         return (
-            <div className = "container" style = {{marginTop : "20px"}}>
-                 <div ref = {this.formRef} className = "company-form"  >
-                           
-                           <form onSubmit = {this.onSubmit}>
-                   <div className="form-group">
-                       <label >User Name</label>
-                       <input type="text" className="form-control"  placeholder="User Name" value={this.state.user.username} onChange = {this.onChangeUserName}/>
-                   </div>
-                   <div className = "form-group"> 
-                   <label>
-                       
-                   Type:
-                    <select onChange = {this.onChangeUserType} value = {this.state.user.type} className = "form-control">
-                        <option value="student">Student</option>
-                        <option value="company">Company</option>
-                    </select>
-                </label>
-                </div> 
-                   <div class="form-group">
-                       <label>Type</label>
-                       <input type="password" class="form-control"  placeholder="Password" value={this.state.user.password} onChange = {this.onChangeUserPassword}/>
-                   </div>
-                   <button type="submit" className="btn btn-primary" >Submit</button>
-                   </form>
-               </div>
-   
+            <div class='container mt-5 text-white'>
+                <div class="container m-auto card p-5 bg-dark" style = {{width : "450px", borderRadius : "10%"}}>
+                    <div ref = {this.formRef} className = "company-form"  >
+                        
+                        <form onSubmit = {this.onSubmit}>
+                            <div className="form-group">
+                                <label>User Name</label>
+                                <input type="text" class="form-control"  placeholder="User Name" value={this.state.user.username} onChange = {this.onChangeUserName}/>
+                            </div>
+                            <div className = "form-group"> 
+                                <label>Type:</label>
+                                <select onChange = {this.onChangeUserType} class="form-control" value = {this.state.user.type}>
+                                    <option value="student">Student</option>
+                                    <option value="company">Company</option>
+                                </select>
+                            </div> 
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control"  placeholder="Password" value={this.state.user.password} onChange = {this.onChangeUserPassword}/>
+                            </div>
+                            <div class='mt-4'>
+                                <button type="submit" class=" form-control btn btn-success" >Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
             </div>
         )
     }

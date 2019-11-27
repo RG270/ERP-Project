@@ -1,13 +1,27 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 export default class NavBar extends Component {
   constructor(props){
       super(props);
-
+      this.onLogOut = this.onLogOut.bind(this);
   }   
+  onLogOut(){
+      axios.post('/logout')
+      .then(res=>{
+          if (res.data === 'error'){
+            alert('error logging you out');
+          } else {
+              alert('you have been successfully logged out');
+              this.props.onLogOut();
+          }
+          
+      });
+  }
 
 
   render(){
+      
       return(
           <nav className = "navbar navbar-dark bg-dark navbar-expand-lg">
               <Link to='/' className = "navbar-brand">ERP Platform</Link>
@@ -27,12 +41,27 @@ export default class NavBar extends Component {
                       <li className = "navbar-item">
                           <Link to='/admin' className = "nav-link">Admininstrators</Link>
                       </li>
-                      <li className = "navbar-item">
-                          <Link to = '/signup' className = "nav-link">Sign Up</Link>
-                      </li>
-                      <li className = "navbar-item">
+                      { this.props.isLoggedIn?
+                      (<li className = "navbar-item">
+                          <a className = "nav-link">{this.props.username}</a>
+                      </li>):
+                      (
+                        <li className = "navbar-item">
+                            <Link to  = '/signup' className = "nav-link">Sign Up</Link>
+                        </li>
+                      )
+                       }
+                      { !this.props.isLoggedIn ?
+                      (<li className = "navbar-item">
                           <Link to = '/login' className = "nav-link">Log in</Link>
-                      </li>
+                      </li>) : 
+                      (
+                        <li className = "navbar-item">
+                        <a href = "#" className = "nav-link" onClick  = {this.onLogOut}>Log Out</a>
+                         </li>
+                      )
+                        }
+                     
                       
                   </ul>
               </div>

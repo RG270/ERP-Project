@@ -15,10 +15,13 @@ var passport = require('passport');
 var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
 var StudentUser = require('./models/studentUser');
-
+var CompanyUser = require('./models/companyUser');
 // SETTING UP THE PASSPORT
 
 passport.use('student-local', new LocalStrategy(StudentUser.authenticate()));
+passport.use('company-local', new LocalStrategy(CompanyUser.authenticate()));
+passport.serializeUser((user, done)=>{done(null, user);});
+passport.deserializeUser((user, done)=>{if (user!=null) done(null, user);})
 
 app.use(express.static('public'));
 app.use(session({

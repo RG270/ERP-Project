@@ -16,13 +16,21 @@ router.get('/', (req, res)=>{
         if (err) console.log(err);
         else {
             console.log(company);
-           
             res.json(company);
         }
     });
 });
 
 
+// GET THE PROFILE OF THE COMPANY
+
+router.get('/:id/show', (req, res)=>{
+    let id = ObjectId(req.params.id.toString());
+    Company.find({_id: id}, (err, found)=>{
+        if (err)console.log(err);
+        else res.json(found);
+    })
+})
 // ADD A COMPANY
 
 router.post('/add', (req, res)=>{
@@ -43,8 +51,20 @@ router.post('/add', (req, res)=>{
 // ADD FILTERS TO THE COMPANIES LIST
 
 router.post('/filters' ,(req,res) => {
-    var filter = {type: req.body.type};
-    if (filter.type ==='')filter = {};
+    let type = req.body.type;
+    let filter;
+  
+    if (type===''){
+        filter = {
+            $and: [
+            {package: {$gte: req.body.minPackage}}, 
+            {package: {$lte: req.body.maxPackage}}]};
+    } else {
+        filter = {
+            $and: [{type: type}, 
+            {package: {$gte: req.body.minPackage}}, 
+            {package: {$lte: req.body.maxPackage}}]};
+    }
      Company.find(filter, (err, result)=>{
         if (err) console.log(err);
         else res.json(result);

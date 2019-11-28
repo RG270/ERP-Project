@@ -33,7 +33,7 @@ router.post('/signup/student', (req, res)=>{
         if (err)res.send("error");
         else {
             passport.authenticate('student-local')(req, res, ()=>{
-                res.send("You have been successfully signed up");
+                res.send(req.user.username);
                 } );
         }
     })

@@ -31,7 +31,7 @@ router.get('/:id', (req, res)=>{
 // ADD A STUDENT
 
 router.post('/add', (req, res)=>{
-    
+    console.log(req.body);
     Student.create(req.body, (err, created)=>{
         if (err) console.log(err);
         else  {
@@ -42,6 +42,33 @@ router.post('/add', (req, res)=>{
       }
     });
 })
+
+
+// GET STUDENT PROFILE
+
+router.get('/:id/show', (req, res)=>{
+    let id = ObjectId(req.params.id.toString());
+    Student.find({_id: id }, (err, found)=>{
+        if (err) console.log("error");
+        else {
+            res.json(found);
+            console.log(found);
+        }
+    });
+});
+
+
+// APPLY FILTER 
+
+router.post('/filters', (req, res)=>{
+   let filter = {
+       $and: [{cgpa: {$gte : req.body.minCGPA}}, {cgpa: {$lte: req.body.maxCGPA} } ]
+   };
+   Student.find(filter, (err, found)=>{
+       if (err)console.log(err);
+       else res.json(found);
+   });
+});
 
 
 // DELETE A STUDENT

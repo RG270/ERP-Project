@@ -5,8 +5,9 @@ var companySchema = new mongoose.Schema({
     id: String,
     name: String,
     type: String,
-    phone: [],
-    email: [],
+    mobNo: String,
+    email: String,
+    package: Number,
     website: String,
     address: String,
     offer: Number

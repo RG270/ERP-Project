@@ -7,12 +7,14 @@ import Company from './components/js/Company';
 import Student from './components/js/Student';
 import SignUp from './components/js/SignUp';
 import LogIn from './components/js/LogIn';
+import StudentProfile from './components/js/StudentProfile';
+import CompanyProfile from './components/js/CompanyProfile';
 import './components/css/company.css';
 import axios from 'axios';
 class App extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       isLoggedIn: false,
       username: ''
@@ -30,7 +32,7 @@ class App extends Component {
     axios.get('/loginStatus')
     .then(res=>{
       let data = res.data;
-      alert(data);
+     
       this.setState({
         isLoggedIn : data.isLoggedIn,
         username: data.username
@@ -44,11 +46,13 @@ class App extends Component {
       <Router>
         <NavBar isLoggedIn = {this.state.isLoggedIn} onLogOut = {this.onLogOut} username = {this.state.username} />
         <Route path = '/' exact component = {HomePage}/> 
-        <Route path = '/company' component= {Company}></Route>
-        <Route path = '/student' component = {Student}></Route>
+        <Route exact path = '/company' component= {Company}></Route>
+        <Route path = '/student/:id/show' render  = {(props)=><StudentProfile {...props} />}/>
+        <Route path = '/company/:id/show' render  = {(props)=><CompanyProfile {...props} />}/>
+        <Route exact path = '/student' component = {Student}></Route>
         <Route path = '/signup'  render = {(props)=> <SignUp {...props} onLogIn = {this.onLogIn} onLogOut = {this.onLogOut} />}></Route>
         <Route path = '/login'  render = {(props)=> <LogIn {...props} onLogIn = {this.onLogIn} onLogOut = {this.onLogOut} />}></Route>
-       
+        
         
       </Router>
 

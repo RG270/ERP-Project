@@ -34,7 +34,7 @@ export default class Filter extends Component {
      onChangeMinPackage = (e)=>{
         var filter  = this.state.filter;
         filter.minPackage = e.target.value;
-        if (filter.minPackage=="") filter.minPackage = 0;
+        if (filter.minPackage==="") filter.minPackage = 0;
         this.setState({
             filter: filter
         });
@@ -58,10 +58,10 @@ export default class Filter extends Component {
                         <label>Type:</label>
                         <select class="form-control custom-select" onChange = {this.onChangeType} value = {this.state.filter.type}>
                             <option value=""> Any </option>
-                            <option value="e-commerce"> E-Commerce</option>
-                            <option value="construction"> Construction</option>
-                            <option value="business"> Business</option>
-                            <option value="information technology"> Information Technology</option>
+                            <option value="E-commerce"> E-Commerce</option>
+                            <option value="Construction"> Construction</option>
+                            <option value="Business"> Business</option>
+                            <option value="Information Technology"> Information Technology</option>
                         </select>
                     </div>
                     <div>

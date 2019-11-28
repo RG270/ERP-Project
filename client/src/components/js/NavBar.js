@@ -38,12 +38,9 @@ export default class NavBar extends Component {
                       <li className = "navbar-item">
                           <Link to='/student' className="nav-link"> Students</Link>
                       </li>
-                      <li className = "navbar-item">
-                          <Link to='/admin' className = "nav-link">Admininstrators</Link>
-                      </li>
                       { this.props.isLoggedIn?
                       (<li className = "navbar-item">
-                          <a className = "nav-link">{this.props.username}</a>
+                          <a className = "nav-link">{this.props.username }</a>
                       </li>):
                       (
                         <li className = "navbar-item">

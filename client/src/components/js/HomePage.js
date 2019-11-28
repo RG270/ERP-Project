@@ -30,11 +30,11 @@ export default class HomePage extends Component {
 
                 <div class='container'>
                     <div class="p-1 mt-5">
-                        <div class='row p-auto'>
+                        <div class='row p-auto about p-4'>
                             <div class='col-md-4 p-5 m-auto'>
                                 <h2>ABOUT</h2>
                             </div>
-                            <div class='col-md-6 m-auto p-3'>
+                            <div class='col-md-7 m-auto p-3'>
                                 <p>This project is aimed at developing an online application
                                     for the Training and Placement Dept. of the college.
                                     The system is an online application that can be accessed 
@@ -52,17 +52,23 @@ export default class HomePage extends Component {
                         <h2>Catered to Everyone's needs</h2>
                     </div>
                     <div class='row'>
-                        <div class='col-md-4 p-5'>
-                            <h4>Students</h4>
-                            <p>Enable students to create job profiles, upload resumes, search and apply for jobs and internships with real-time status tracking from anywhere and anytime.</p>
+                        <div class='col-md-4 p-2'>
+                            <div class='info p-3'>
+                                <h4>Students</h4>
+                                <p>Enable students to create job profiles, upload resumes, search and apply for jobs and internships with real-time status tracking from anywhere and anytime.</p>
+                            </div>
                         </div>
-                        <div class='col-md-4 p-5'>
-                            <h4>Colleges</h4>
-                            <p>Capture data and reports related to students and employers which can be accessed by administrators with a single click in a safe and secure environment.</p>
+                        <div class='col-md-4 p-2'>
+                            <div class='info p-3'>
+                                <h4>Colleges</h4>
+                                <p>Capture data and reports related to students and employers which can be accessed by administrators with a single click in a safe and secure environment.</p>
+                            </div>
                         </div>
-                        <div class='col-md-4 p-5'>
-                            <h4>Companies</h4>
-                            <p>Easily screen students for exact requirements and get access to entire student database.</p>
+                        <div class='col-md-4 p-2'>
+                            <div class='info p-3'>
+                                <h4>Companies</h4>
+                                <p>Easily screen students for exact requirements and get access to entire student database. Easy medium and platform for providing palcements.</p>
+                            </div>
                         </div>
                     </div>
 

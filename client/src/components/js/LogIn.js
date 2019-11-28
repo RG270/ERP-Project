@@ -42,23 +42,22 @@ export default class SignUp extends Component {
         e.preventDefault();
         let user = this.state.user;
         if (user.type ==='student'){
-            axios.post('/signup/student', qs.stringify(user))
-            .then(res=>{
-                if (res.data === 'error'){
-                    alert("Username already exists");
-               } else this.props.onLogIn(res.data + '(' + user.type + ')');
-        })
-            .catch(err=>alert("sorry we could not sign you up"));
-
+            axios.post('/login/student', qs.stringify(user))
+            .then(res=>{if (res.data === 'error'){alert("Invalid username or password");}
+                      else {
+                          this.props.onLogIn(res.data + '(' + user.type + ')');
+                      }
+                    }
+            )
+            .catch(err=>alert("Invalid username or password"));
         } else if (user.type === 'company'){
-            axios.post('/signup/company', qs.stringify(user))
-            .then(res=>{
-                if (res.data === 'error'){
-                    alert("Username already exists");
-               } else this.props.onLogIn(res.data + '(' + user.type + ')');
-        })
-            .catch(err=>alert("sorry we could not sign you up"));
-
+            axios.post('/login/company', qs.stringify(user))
+            .then(res=>{if (res.data === 'error'){alert("Invalid username or password here");}
+                      else {
+                          this.props.onLogIn(res.data + '(' + user.type + ')');
+                      }
+                    })
+            .catch(err=>alert("Invalid username or password"));
         } else {
             
         }
@@ -86,7 +85,7 @@ export default class SignUp extends Component {
                                 <input type="password" class="form-control"  placeholder="Password" value={this.state.user.password} onChange = {this.onChangeUserPassword}/>
                             </div>
                             <div class='mt-4'>
-                                <button type="submit" class=" form-control btn btn-success" >Sign Up</button>
+                                <button type="submit" class=" form-control btn btn-success" >Log In</button>
                             </div>
                         </form>
                     </div>
